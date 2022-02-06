@@ -1,0 +1,52 @@
+<apex:page standardController="Opportunity" recordSetvar="opportunities" extensions="VFP_DeleteSomeOpportunities_CTRL">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <apex:slds />
+        <style>
+            .error {
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                flex-direction: column;
+                font-size: 30px;
+                color: rgb(255,255,255);
+                margin: 20px 10%;
+                padding: 10px;
+                background-color: rgb(255, 59, 59);
+                border-radius: 10px;
+                transition: background-color 0.3s;
+            }
+
+            .error:hover{
+                background-color: rgb(255, 143, 143);
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <apex:outputPanel rendered="{!if(oppsCount != 0 ,false ,true)}" >
+            <div class="error" onclick="history.back();">
+                <div>Select at least one record and try again.</div>
+                <div style="text-decoration:underline;">Click here to return.</div>
+            </div>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!if(oppsCount != 0 ,true ,false)}">
+            <apex:form>
+                <apex:pageBlock title="Selected opportunities." >
+                    <div class="slds-p-around_small lds-text-heading_large">{!oppsCount} Records selected.</div>
+                    <apex:pageBlockButtons location="bottom">
+                        <apex:commandButton action="{!back}" value="Back" oncomplete="history.back();"/>
+                        <apex:commandButton action="{!execute}" value="Execute Delete" oncomplete="history.back();"/>
+                    </apex:pageBlockButtons>
+                    <apex:pageBlockTable value="{!selectedOpportunities}" var="opportunity">
+                        <apex:column value="{!opportunity.Name}"/>
+                        <apex:column value="{!opportunity.Account.Name}"/>
+                        <apex:column value="{!opportunity.StageName}"/>
+                        <apex:column value="{!opportunity.Owner.Name}"/>
+                    </apex:pageBlockTable>
+                </apex:pageBlock>
+            </apex:form>
+        </apex:outputPanel>
+    </body>
+</apex:page>
