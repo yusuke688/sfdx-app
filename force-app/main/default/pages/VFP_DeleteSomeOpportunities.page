@@ -23,6 +23,11 @@
                 cursor: pointer;
             }
         </style>
+        <script>
+            function test() {
+                console.log('end');
+            }
+        </script>
     </head>
     <body>
         <apex:outputPanel rendered="{!if(oppsCount != 0 ,false ,true)}" >
@@ -37,7 +42,8 @@
                     <div class="slds-p-around_small lds-text-heading_large">{!oppsCount} Records selected.</div>
                     <apex:pageBlockButtons location="bottom">
                         <apex:commandButton action="{!back}" value="Back" oncomplete="history.back();"/>
-                        <apex:commandButton action="{!execute}" value="Execute Delete" oncomplete="history.back();"/>
+                        <!-- <apex:commandButton action="{!execute}" value="Execute Delete" oncomplete="history.back();"/> -->
+                        <apex:commandButton action="{!execute}" value="Execute Delete"/>
                     </apex:pageBlockButtons>
                     <apex:pageBlockTable value="{!selectedOpportunities}" var="opportunity">
                         <apex:column value="{!opportunity.Name}"/>
@@ -48,5 +54,6 @@
                 </apex:pageBlock>
             </apex:form>
         </apex:outputPanel>
+        <apex:pageMessages />
     </body>
 </apex:page>

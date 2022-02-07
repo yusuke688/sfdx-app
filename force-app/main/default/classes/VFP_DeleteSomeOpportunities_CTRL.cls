@@ -1,6 +1,7 @@
 public with sharing class VFP_DeleteSomeOpportunities_CTRL {
     public List<Opportunity> selectedOpportunities {get;set;}
     public Integer oppsCount {get; set;}
+    public String errorMsg {get; set;}
     
     // Constructor
     public VFP_DeleteSomeOpportunities_CTRL(ApexPages.StandardSetController controller) {
@@ -11,7 +12,12 @@ public with sharing class VFP_DeleteSomeOpportunities_CTRL {
 
     public void execute() {
         
-        delete selectedOpportunities;
+        try {
+            delete selectedOpportunities;
+        } catch (Exception e) {
+            ApexPages.Message message = new ApexPages.Message(ApexPages.severity.ERROR, e.getMessage());
+            ApexPages.addMessage(message);
+        }
     }
 
     public void back() {
