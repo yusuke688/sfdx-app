@@ -1,0 +1,20 @@
+<template>
+  <lightning-card title="Lightning Map" icon-name="custom:custom14">
+    <div class="container">
+      <lightning-button
+        class="slds-float_right map_button"
+        variant="brand" 
+        label="Open Google Map"
+        title="Open Google Map"
+        onclick={onClickOpenGoogleMap}
+      ></lightning-button>
+      <template if:true={mapMarkers}>
+        <lightning-map 
+          class="lightning_map"
+          map-markers={mapMarkers}
+          zoom-level={zoomLevel}
+        > </lightning-map>
+      </template>
+    </div>
+  </lightning-card>
+</template>

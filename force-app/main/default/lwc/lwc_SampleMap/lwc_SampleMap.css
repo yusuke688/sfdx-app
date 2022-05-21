@@ -1,0 +1,19 @@
+.container {
+    position: relative;
+    height: 400px;
+}
+
+.map_button {
+    position: absolute;
+    z-index: 20;
+    top:10px;
+    right:10px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.40);
+}
+
+.lightning_map {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+}
