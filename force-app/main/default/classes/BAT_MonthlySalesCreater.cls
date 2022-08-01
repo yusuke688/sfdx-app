@@ -118,9 +118,6 @@ public with sharing class BAT_MonthlySalesCreater implements Database.batchable<
             System.debug(e.getMessage());
             Database.rollback(sp);
         }
-
-
-        // Database.rollback(sp);
     }
    
     public void finish(Database.BatchableContext BC){
