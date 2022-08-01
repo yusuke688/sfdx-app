@@ -21,10 +21,7 @@ export default class Lwc_SampleMap extends LightningElement {
 
     @wire(getRecord, { recordId: '$recordId', fields: FIELDS})
     wiredAccount({ data }) {
-        console.log('wiredAccount-0');
-        console.log(data);
         if(data){
-            console.log('if-data');
             let markers = [];
             let description = data.fields.BillingPostalCode.value + '<br/>'
             description += data.fields.BillingCountry.value + ' '
@@ -47,8 +44,6 @@ export default class Lwc_SampleMap extends LightningElement {
     }
 
     onClickOpenGoogleMap(){
-        console.log('onClickOpenGoogleMap');
-
         let url = 'https://maps.google.com/maps?q=';
         url += this.mapMarkers[0].location.Latitude + ',';
         url += this.mapMarkers[0].location.Longitude;
